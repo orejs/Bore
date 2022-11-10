@@ -49,7 +49,7 @@ const Home: NextPage<{ list: BlogInfo[] }> = ({ list }) => {
               <div className="mt-16 sm:mt-20">
                 <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
                   <div className="flex max-w-3xl flex-col space-y-16">
-                    {list.map((blog, inx) => (
+                    {list?.map((blog, inx) => (
                       <article key={inx} className="md:grid md:grid-cols-4 md:items-baseline">
                         <div className="md:col-span-3 group relative flex flex-col items-start">
                           <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
