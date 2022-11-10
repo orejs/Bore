@@ -23,19 +23,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  let blog: BlogInfo | null = null;
   const slug = context.params?.slug as string;
   if (slug) {
-    let blog = await descriptor(getBlog)(slug, ['title', 'content', 'description', 'createdAt']);
+    blog = (await descriptor(getBlog)(slug, [
+      'title',
+      'content',
+      'description',
+      'createdAt',
+    ])) as any;
     blog = serializable(blog);
 
     if (blog) {
       blog.content = markdownParser.render(blog.content || '');
       blog.createdAt = formatDate(blog.createdAt);
-      return { props: { blog } };
     }
   }
 
-  return { props: {} };
+  return { props: { blog }, revalidate: 60 };
 };
 
 const Home: NextPage<{ blog?: BlogInfo }> = ({ blog }) => {
