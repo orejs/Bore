@@ -158,12 +158,12 @@ export async function createBlog(blog: Omit<IBlog, 'cover'> & { cover?: string }
   return doc;
 }
 
-export async function findBlog({
-  current,
-  pageSize,
-  fields,
-  ...blog
-}: Pagination.Params) {
+export async function findAllBlog(blog: Record<string, any> = {}, fields?: Array<keyof BlogInfo>) {
+  const blogs = await Blog.find(blog, fields).populate('cover').sort({ _id: -1 }).exec();
+  return blogs;
+}
+
+export async function findBlog({ current, pageSize, fields, ...blog }: Pagination.Params) {
   const blogs = await Blog.find(blog, fields)
     .populate('cover')
     .skip(current * pageSize)
