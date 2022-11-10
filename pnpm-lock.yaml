@@ -10,6 +10,7 @@ specifiers:
   '@codemirror/commands': ^6.1.2
   '@codemirror/lang-markdown': ^6.0.3
   '@codemirror/language-data': ^6.1.0
+  '@codemirror/search': ^6.2.2
   '@codemirror/state': ^6.1.2
   '@codemirror/view': ^6.4.0
   '@headlessui/react': ^1.7.4
@@ -115,6 +116,7 @@ dependencies:
   '@codemirror/commands': 6.1.2
   '@codemirror/lang-markdown': 6.0.3
   '@codemirror/language-data': 6.1.0
+  '@codemirror/search': 6.2.2
   '@codemirror/state': 6.1.2
   '@codemirror/view': 6.4.0
   '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
