@@ -1,9 +1,10 @@
-const withAntdLess = require('next-plugin-antd-less');
+const removeImports = require('next-remove-imports')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  // productionBrowserSourceMaps: true,
   pageExtensions: ['p.tsx', 'p.ts', 'p.jsx', 'p.js'],
   env: {
     // 站点名字
@@ -36,4 +37,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withAntdLess(nextConfig);
+module.exports = removeImports(nextConfig);

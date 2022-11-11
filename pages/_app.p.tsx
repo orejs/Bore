@@ -21,6 +21,9 @@ function Layout({ children }: LayoutProps) {
   if (router.route.indexOf('/admin') === 0) {
     return <AdminLayout>{children}</AdminLayout>;
   }
+  if (router.route.indexOf('/user') === 0) {
+    return <>{children}</>;
+  }
   return <BlogLayout>{children}</BlogLayout>;
 }
 function MyApp({

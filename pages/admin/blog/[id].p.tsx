@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (ret.props) {
     const id = context.query.id as string;
-    const blog = await descriptor(getBlogById)(id, ['_id', 'title', 'content']);
+    const blog = await descriptor(getBlogById)(id, ['title', 'content']);
     ret.props = { ...ret.props, blog: serializable(blog.toJSON()) };
   }
   return ret;
@@ -31,7 +31,7 @@ const Home = ({ blog }: Props) => {
   return (
     <>
       <Head>
-        <title>编辑文章 - {process.env.title}</title>
+        <title>{`编辑 ${blog.title} - ${process.env.title}`}</title>
         <meta name="description" content="编辑文章" />
       </Head>
 

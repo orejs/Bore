@@ -189,7 +189,7 @@ const Home: NextPage = () => {
                 {renderForm()}
               </ModalForm>,
               <Link key="editable" href={`/admin/blog/${record._id}`}>
-                <a>编辑内容</a>
+                <a target="_blank">编辑内容</a>
               </Link>,
             ],
           },

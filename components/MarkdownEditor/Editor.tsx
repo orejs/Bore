@@ -8,10 +8,6 @@ import { SmileOutlined } from '@ant-design/icons';
 import { CODE_THEME_ID, PREVIEW_ID, THEME_ID } from './constant';
 import { MarkdownEditorProps, Store } from './store';
 
-import 'antd/lib/message/style';
-import 'antd/lib/button/style';
-import 'antd/lib/result/style';
-
 interface EditorProps {
   store: Store;
 }
@@ -19,7 +15,7 @@ interface EditorProps {
 const Editor = observer<EditorProps>(({ store }) => {
   const editor = useRef<HTMLDivElement>(null);
   const preview = useRef<HTMLDivElement>(null);
-  const { title, content, parseHtml, lineCount, wordCount, publishLoading, onPublish } = store;
+  const { title, parseHtml, lineCount, wordCount, publishLoading, onPublish } = store;
   useMount(() => store.mount(editor.current!, preview.current!));
   useUnmount(() => store.unmount());
 
