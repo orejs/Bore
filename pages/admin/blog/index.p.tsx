@@ -14,8 +14,6 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { ProTable, ModalForm, ProFormText, ProFormSelect } from 'procomponents';
 
-export { getServerSideProps } from 'pages/admin/utils';
-
 interface CoverProps {
   value?: IResource;
   onChange?(value: IResource): void;

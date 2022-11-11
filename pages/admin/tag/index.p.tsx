@@ -8,8 +8,6 @@ import { PlusOutlined } from '@ant-design/icons';
 import { request } from 'utils';
 import omit from 'lodash/omit';
 
-export { getServerSideProps } from 'pages/admin/utils';
-
 const typeEnum = {
   all: { text: '全部', type: 'Default' },
   tag: { text: '标签', type: 'Processing' },

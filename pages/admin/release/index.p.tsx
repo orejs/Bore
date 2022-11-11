@@ -1,7 +1,5 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-
-export { getServerSideProps } from 'pages/admin/utils';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (
