@@ -18,6 +18,9 @@ interface LayoutProps {
 }
 function Layout({ children }: LayoutProps) {
   const router = useRouter();
+  if (router.asPath === '/') {
+    return <BlogLayout isHome>{children}</BlogLayout>;
+  }
   if (router.route.indexOf('/admin') === 0) {
     return <AdminLayout>{children}</AdminLayout>;
   }
