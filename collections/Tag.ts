@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+import { Schema } from 'mongoose';
 import { createModel } from './client';
 
 interface ITag {
@@ -5,6 +7,8 @@ interface ITag {
   name: string;
   type?: string;
   count?: number;
+  cover?: ObjectId;
+  description?: string;
 }
 
 export const Tag = createModel<ITag>('Tag', {
@@ -12,6 +16,8 @@ export const Tag = createModel<ITag>('Tag', {
   name: { type: String, required: true },
   type: { type: String, default: 'tag' },
   count: { type: Number, default: 0 },
+  description: { type: String, default: '' },
+  cover: { type: Schema.Types.ObjectId, ref: 'Resource' },
 });
 
 export async function getTag(slug: string) {

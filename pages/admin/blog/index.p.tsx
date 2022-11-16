@@ -142,6 +142,7 @@ const Home: NextPage = () => {
             title: '是否推荐到首页',
             dataIndex: 'recommend',
             hideInSearch: true,
+            width: 120,
             valueType: 'select',
             valueEnum: {
               true: { text: '推荐', type: 'Success' },

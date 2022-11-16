@@ -2,12 +2,13 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRequest } from 'ahooks';
 import { useRouter } from 'next/router';
-import { useState, createElement } from 'react';
+import { useState, createElement, useEffect } from 'react';
 import { signOut, useSession } from 'next-auth/react';
-import { Layout, Menu, Spin, Button, Result } from 'antd';
+import { Layout, Menu, Spin, Button, Result, MenuProps } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  SettingOutlined,
   RocketFilled,
   BookFilled,
   CloudFilled,
@@ -20,12 +21,50 @@ interface Props {
   children?: React.ReactNode;
 }
 
+const items: MenuProps['items'] = [
+  {
+    key: 'blog',
+    icon: <BookFilled />,
+    label: '文章',
+  },
+  {
+    key: 'tag',
+    icon: <TagsFilled />,
+    label: '标签',
+  },
+  {
+    key: 'release',
+    icon: <RocketFilled />,
+    label: '发布',
+  },
+  {
+    key: 'resource',
+    icon: <CloudFilled />,
+    label: '素材库',
+  },
+  {
+    key: 'setting',
+    icon: <SettingOutlined />,
+    label: '设置',
+  },
+];
+
+const keys = items.map((item) => item?.key!);
+
 const AdminLayout = ({ children }: Props) => {
   const router = useRouter();
-  const [collapsed, setCollapsed] = useState(false);
   const { data: session, status } = useSession();
+  const [collapsed, setCollapsed] = useState(false);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const signOutReq = useRequest(() => signOut(), { manual: true });
   const loading = status === 'loading';
+
+  useEffect(() => {
+    const selectedKey = router.asPath.replace('/admin/', '');
+    if (keys.includes(selectedKey)) {
+      setSelectedKeys([selectedKey]);
+    }
+  }, [router.asPath]);
 
   return (
     <Spin spinning={loading}>
@@ -40,30 +79,9 @@ const AdminLayout = ({ children }: Props) => {
                 <Menu
                   theme="dark"
                   mode="inline"
-                  defaultSelectedKeys={['blog']}
+                  items={items}
+                  selectedKeys={selectedKeys}
                   onClick={({ key }) => router.push(`/admin/${key}`)}
-                  items={[
-                    {
-                      key: 'blog',
-                      icon: <BookFilled />,
-                      label: '文章',
-                    },
-                    {
-                      key: 'tag',
-                      icon: <TagsFilled />,
-                      label: '标签',
-                    },
-                    {
-                      key: 'release',
-                      icon: <RocketFilled />,
-                      label: '发布',
-                    },
-                    {
-                      key: 'resource',
-                      icon: <CloudFilled />,
-                      label: '素材库',
-                    },
-                  ]}
                 />
               </Layout.Sider>
               <Layout>

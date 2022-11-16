@@ -6,13 +6,7 @@ import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 import { markdownParser, updateMathjax } from './utils/helper';
 import { basic, theme, xcode, defaultContent } from './theme';
-import {
-  CODE_THEME_ID,
-  MJX_DATA_FORMULA,
-  MJX_DATA_FORMULA_TYPE,
-  THEME_ID,
-  THROTTLE_MATHJAX_TIME,
-} from './constant';
+import { CODE_THEME_ID, THEME_ID, THROTTLE_MATHJAX_TIME } from './constant';
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 
