@@ -5,6 +5,7 @@ import { createModel } from './client';
 interface IUser {
   name: string;
   nickname?: string;
+  password?: string;
   email?: string;
   phone?: string;
   image?: string;
@@ -19,6 +20,7 @@ const User = createModel<IUser>('User', {
   wxAccessToken: { type: Schema.Types.ObjectId, ref: 'Token' },
   wxJSApiTicket: { type: Schema.Types.ObjectId, ref: 'Token' },
   nickname: String,
+  password: String,
   email: String,
   phone: String,
   image: String,
@@ -40,4 +42,9 @@ export async function getUserById(id: string) {
 
 export async function getUserByAdmin() {
   return getUserById(process.env.AdminObjectId);
+}
+
+export async function AuthorizeByPass(name: string, password: string) {
+  const doc = await User.findOne({ name, password });
+  return doc;
 }
