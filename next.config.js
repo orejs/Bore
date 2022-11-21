@@ -31,6 +31,7 @@ const nextConfig = {
         source: '/projects',
         destination: '/projects/page/1',
       },
+      { source: '/admin/:match*', destination: 'https://aore.vercel.app/:match*' },
     ];
   },
 };
