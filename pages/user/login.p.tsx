@@ -1,5 +1,4 @@
 import { GithubFilled } from '@ant-design/icons';
-import { Button } from 'antd';
 import { BuiltInProviderType } from 'next-auth/providers';
 import { getProviders, signIn } from 'next-auth/react';
 import type { LiteralUnion, ClientSafeProvider } from 'next-auth/react';
@@ -22,14 +21,14 @@ export default function SignIn({ providers }: Props) {
     <div className="w-screen h-screen flex flex-col items-center justify-center gap-3">
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
-          <Button
+          <button
             className="flex items-center"
-            icon={iconMap[provider.id]}
-            shape="round"
+            // icon={iconMap[provider.id]}
+            // shape="round"
             onClick={() => signIn(provider.id)}
           >
             Sign in with {provider.name}
-          </Button>
+          </button>
         </div>
       ))}
     </div>

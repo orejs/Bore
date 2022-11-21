@@ -6,7 +6,7 @@ import NProgress from 'nprogress';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
-import { BlogLayout, AdminLayout } from 'components';
+import { BlogLayout } from 'components';
 import { SessionProvider, SessionProviderProps } from 'next-auth/react';
 
 import 'focus-visible/dist/focus-visible.min.js';
@@ -20,9 +20,6 @@ function Layout({ children }: LayoutProps) {
   const router = useRouter();
   if (router.asPath === '/') {
     return <BlogLayout isHome>{children}</BlogLayout>;
-  }
-  if (router.route.indexOf('/admin') === 0) {
-    return <AdminLayout>{children}</AdminLayout>;
   }
   if (router.route.indexOf('/user') === 0) {
     return <>{children}</>;

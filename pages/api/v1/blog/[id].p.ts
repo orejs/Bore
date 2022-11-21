@@ -1,21 +1,19 @@
 import { supabase } from 'lib/auth';
 import { errorToJSON } from 'utils';
-import { descriptor, getBlogById, updateBlog, updateBlogContent } from 'collections';
+import { BlogInfo, descriptor, getBlogById, updateBlog, updateBlogContent } from 'collections';
 
 const handler = supabase()(async (req, res) => {
   try {
     const id = req.query.id as string;
+    const fields = req.query['fields[]'] as Array<keyof BlogInfo>;
+
+    console.log(fields);
 
     if (req.method === 'GET') {
-      const blog = await descriptor(getBlogById)(id, [
-        '_id',
-        'title',
-        'slug',
-        'description',
-        'recommend',
-        'cover',
-        'tags',
-      ]);
+      const blog = await descriptor(getBlogById)(
+        id,
+        fields ?? ['_id', 'title', 'slug', 'description', 'recommend', 'cover', 'tags'],
+      );
       res.status(200).json(blog.toJSON());
       return;
     }
